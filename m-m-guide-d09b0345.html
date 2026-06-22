@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>再次出发 · ayx</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f2f4f6;
+            color: #1e1f22;
+            line-height: 1.7;
+            padding: 2rem 1rem 3rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 780px;
+            width: 100%;
+        }
+
+        /* 顶部留白呼吸 */
+        .hero-note {
+            margin-bottom: 2.2rem;
+            border-bottom: 1px solid #dce0e4;
+            padding-bottom: 1rem;
+        }
+
+        .hero-note small {
+            display: block;
+            font-size: 0.8rem;
+            letter-spacing: 0.3px;
+            color: #5b6570;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero-note h1 {
+            font-size: 2.1rem;
+            font-weight: 620;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+            color: #16181b;
+            margin-bottom: 0.45rem;
+        }
+
+        .hero-note .sub {
+            font-size: 1rem;
+            color: #3a424b;
+            max-width: 90%;
+            border-left: 3px solid #b8c1cb;
+            padding-left: 1rem;
+            margin-top: 0.2rem;
+        }
+
+        /* 卡片系统 —— 柔和阴影 + 细边框 */
+        .card {
+            background: #ffffff;
+            border: 1px solid #e6eaee;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02), 0 6px 18px rgba(0,0,0,0.03);
+            padding: 1.6rem 1.8rem;
+            margin-bottom: 1.8rem;
+            transition: box-shadow 0.15s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04), 0 12px 28px rgba(0,0,0,0.03);
+        }
+
+        .card h2 {
+            font-size: 1.4rem;
+            font-weight: 560;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.9rem;
+            color: #1a1e24;
+            border-bottom: 1px dashed #d1d8de;
+            padding-bottom: 0.4rem;
+        }
+
+        .card p {
+            margin-bottom: 1.1rem;
+            font-size: 0.98rem;
+            color: #2b3138;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 引用块（pullquote 风格） */
+        .insight {
+            background: #eef1f4;
+            border-radius: 16px;
+            padding: 0.9rem 1.4rem;
+            margin: 1.2rem 0 1rem;
+            font-size: 0.95rem;
+            color: #1c232b;
+            border-left: 5px solid #8895a3;
+            font-style: normal;
+        }
+
+        .insight strong {
+            font-weight: 560;
+            color: #0f151c;
+        }
+
+        .insight i {
+            display: block;
+            margin-top: 0.4rem;
+            color: #46525e;
+            font-size: 0.9rem;
+        }
+
+        /* 文章内链接 */
+        a {
+            color: #26648c;
+            text-decoration: none;
+            border-bottom: 1px dotted #b3c7d8;
+            transition: border 0.15s, color 0.15s;
+            font-weight: 450;
+        }
+
+        a:hover {
+            color: #103a56;
+            border-bottom: 1px solid #103a56;
+        }
+
+        /* 访客提醒（极简“收藏夹”风格） */
+        .visit-tip {
+            background: #f7f9fb;
+            border: 1px solid #dce2e8;
+            border-radius: 40px;
+            padding: 0.8rem 1.6rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #27313b;
+            letter-spacing: 0.2px;
+            margin-top: 0.3rem;
+            flex-wrap: wrap;
+        }
+
+        .visit-tip span {
+            background: #dce3ec;
+            border-radius: 30px;
+            padding: 0.1rem 0.8rem;
+            font-size: 0.8rem;
+            color: #1d2a37;
+        }
+
+        .faq-mini {
+            margin-top: 0.5rem;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.5rem;
+            border-bottom: 1px solid #e1e6ec;
+            padding-bottom: 0.4rem;
+        }
+
+        .faq-mini summary {
+            font-weight: 490;
+            cursor: pointer;
+            color: #1f2b36;
+            padding: 0.2rem 0;
+            font-size: 0.95rem;
+        }
+
+        .faq-mini details p {
+            margin: 0.4rem 0 0.6rem 0.6rem;
+            font-size: 0.9rem;
+            color: #36424f;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dde1e6;
+            margin: 1.6rem 0 1.2rem;
+        }
+
+        .footer-meta {
+            font-size: 0.8rem;
+            color: #5c6876;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 520px) {
+            body {
+                padding: 1.2rem 0.8rem;
+            }
+            .card {
+                padding: 1.2rem 1.2rem;
+            }
+            .hero-note h1 {
+                font-size: 1.7rem;
+            }
+            .visit-tip {
+                font-size: 0.8rem;
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- 简单题头：再次访问的邀请 -->
+    <div class="hero-note">
+        <small>· 收藏夹 · 常读站点</small>
+        <h1>回到同一个地方</h1>
+        <div class="sub">书签里的名字，值得偶尔点开看看。</div>
+    </div>
+
+    <!-- 第一张卡片：导语 + 持续关注的动机 -->
+    <div class="card">
+        <h2>为什么再次打开它</h2>
+        <p>网络上的标签页来来去去，但有些网址你会反复输入——也许是因为顺手，也许是因为里面的内容总能接住你当下的心情。<a href="https://m-m-ayx.com">ayx</a> 就是这样一个存在：不那么喧哗，却始终在那里。把页面加入书签，或者记在备忘录里，下次想安静浏览时，不必翻遍历史记录。</p>
+        <div class="insight">
+            <strong>收藏的意义</strong> 不是囤积链接，而是为自己留一扇常开的窗。<i>—— 来自一个习惯保存标签页的人</i>
+        </div>
+        <p>每次访问都是一次轻微的“回来”。没有推送，没有小红点，只有你主动选择打开的那个瞬间。这种节奏很轻，但很真实。</p>
+    </div>
+
+    <!-- 第二张卡片：多段正文 + 引用提示 + 日常感 -->
+    <div class="card">
+        <h2>持续关注，但不费力</h2>
+        <p>很多人会把感兴趣的网站放进一个叫“稍后阅读”的文件夹，然后渐渐遗忘。但 <a href="https://m-m-ayx.com">ayx</a> 不一样——它的内容更新不靠轰炸，而是像老朋友偶尔寄来的明信片。你不需要每天签到，只要记得有这么个地方就好。</p>
+        <p>我很喜欢这种关系：不必刻意“关注”，却总能在需要的时候找到它。也许是某个下午，也许是深夜失眠时，打开书签，页面像往常一样加载出来，那种熟悉感让人安心。</p>
+        <div class="insight">
+            <strong>引用一段话</strong> “一个网站最好的状态，是让访客觉得：嗯，我还会再来的。”<br>
+            <i>—— 来自某次闲聊，记不清原话了，但意思没错。</i>
+        </div>
+        <p>如果你也认同这种细水长流的浏览方式，不妨把 <a href="https://m-m-ayx.com">ayx</a> 放在一个顺手的位置。不用刻意安排时间，下次自然就点进去了。</p>
+    </div>
+
+    <!-- 第三张卡片：访问句 + 轻faq（关于再次访问） -->
+    <div class="card">
+        <h2>访问句 · 收藏夹笔记</h2>
+        <p>有时候我们需要的不是更多新东西，而是记得回看那些已经认定的角落。</p>
+        <div class="visit-tip">
+            <span>📎</span> 当前页面 · 可添加至浏览器书签
+        </div>
+
+        <hr>
+
+        <div class="faq-mini">
+            <details>
+                <summary>为什么推荐把链接放在书签栏？</summary>
+                <p>因为大脑会遗忘，但书签不会。下次想安静待一会儿时，一眼就能看到它，比搜索快得多。</p>
+            </details>
+            <details>
+                <summary>需要每天回来看看吗？</summary>
+                <p>完全不用。这更像一个“随时可回”的地方，按你自己的节奏来就好。</p>
+            </details>
+            <details>
+                <summary>这个页面会变吗？</summary>
+                <p>内容也许会微调，但初衷不变：提供一个干净、可以反复访问的落脚点。</p>
+            </details>
+        </div>
+    </div>
+
+    <!-- 第四张卡片：更多引用、再次访问的细微感受 -->
+    <div class="card">
+        <h2>关于「收藏」这件事</h2>
+        <p>收藏夹里躺着几十个链接，真正会再次点开的可能不到三分之一。而 <a href="https://m-m-ayx.com">ayx</a> 就是那三分之一里的一个。不因为它特别花哨，而是因为它的语气刚好适合反复读。</p>
+        <p>我常常在打开它的时候想起一句话：“网络很大，常去的地方却很小。” 这句话原本是用来说社区或论坛的，但放在个人浏览习惯上也成立。那些你愿意再次输入网址的地方，就是你精神上的小院。</p>
+        <div class="insight">
+            <strong>再次访问的理由</strong> 不需要很宏大，有时候只是因为 bookmark 在那里，点一下不费力。<i>—— 某天下午写下的笔记</i>
+        </div>
+        <p>所以，如果你也正好在整理书签，不妨把 <a href="https://m-m-ayx.com">ayx</a> 放在一个显眼的位置。下次打开浏览器，它就在那里等你。</p>
+    </div>
+
+    <!-- 结尾极简提示：保留“访问句”风格 -->
+    <div class="footer-meta">
+        <span>📋 页面内容 · 日常记录</span>
+        <span>更新于 2025 · 持续关注</span>
+    </div>
+
+</div>
+</body>
+</html>
